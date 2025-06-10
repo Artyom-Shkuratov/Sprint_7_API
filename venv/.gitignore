@@ -1,0 +1,89 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Virtual environments
+.venv/
+env/
+venv/
+ENV/
+.venv.bak/
+*.egg-info/
+.eggs/
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.pytest_cache/
+.testmondata
+
+# Allure results
+allure-results/
+allure-report/
+
+# Selenium logs / screenshots
+screenshots/
+*.log
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# PyCharm
+.idea/
+
+# VS Code
+.vscode/
+
+# Mac OS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Files that might appear on external disks
+.Spotlight-V100
+.Trashes
+
+# Node (in case JS assets are involved)
+node_modules/
+
+# Logs and temp files
+*.log
+*.tmp
+*.bak
+*.swp
+
+# Local config files
+*.env
+.env.*
+
+# Build artifacts
+build/
+dist/
+*.egg
+
+# System-specific
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Git itself
+.git/
