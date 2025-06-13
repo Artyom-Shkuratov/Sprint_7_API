@@ -1,6 +1,5 @@
 from Api_Methods.method_api import APICourier
-from Data.data import Payloads
-from Data.urls import Urls
+from Data.constats import *
 import pytest
 import allure
 
@@ -8,10 +7,10 @@ import allure
 class TestCourierLogin:
 
     @allure.title("Проверяем, что курьер может авторизоваться")
-    def test_create_courier(self):
-        data = Payloads().create_courier_data()
-        APICourier.create_courier(data)
-        response, status_code = APICourier.login_courier(data)
+    def test_create_courier(self,created_courier):
+        APICourier.create_courier(created_courier)
+        response, status_code = APICourier.login_courier(created_courier)
+        
         assert status_code == 200, "Неуспешная авторизация курьера"
         assert response["id"], "При авторизации не был получен ID"
 
@@ -25,8 +24,9 @@ class TestCourierLogin:
     def test_login_courier_with_missing_login(self, data):
         APICourier.create_courier(data)
         response, status_code = APICourier.login_courier(data)
+        
         assert status_code == 400
-        assert response["message"] == "Недостаточно данных для входа"
+        assert response["message"] == MISSING_FIELDS_LOGIN_MESSAGE
 
     
     
@@ -37,5 +37,6 @@ class TestCourierLogin:
     ])
     def test_login_courier_with_unreal_login(self, data):
         response, status_code = APICourier.login_courier(data)
+        
         assert status_code == 404
-        assert response["message"] == "Учетная запись не найдена"
+        assert response["message"] == COURIER_NOT_FOUND_MESSAGE
