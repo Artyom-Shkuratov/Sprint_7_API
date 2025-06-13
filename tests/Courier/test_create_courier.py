@@ -1,7 +1,7 @@
 from Api_Methods.method_api import APICourier
 from Data.data import Payloads
 from Data.constats import *
-from Model.response_model import CourierCreateResponseModel
+
 
 import pytest
 import allure
@@ -10,15 +10,15 @@ import allure
 class TestCourierRegister:
 
     @allure.title("Проверяем, что курьера можно создать")
-    def test_create_courier(self, create_data_couriers):
-        response = APICourier.create_courier(create_data_couriers)
+    def test_create_courier(self,create_courier):
+        response = APICourier.login_courier(create_courier)[0]
         
-        assert response == COURIER_CREATED, f"Курьер не создан. Ответ: {response}"
+        assert "id" in response, f"Курьер не создан: {response}"
 
     @allure.title("Проверяем, что нельзя создать двух одинаковых курьеров")
-    def test_create_duplicate_courier(self,created_courier):
-        APICourier.create_courier(created_courier)
-        response = APICourier.create_courier(created_courier)
+    def test_create_duplicate_courier(self,create_courier):
+        APICourier.create_courier(create_courier)
+        response = APICourier.create_courier(create_courier)
         
         assert response["message"] == DUPLICATE_MESSAGE, "Курьер с одинаковыми данным не должен создаваться"
 

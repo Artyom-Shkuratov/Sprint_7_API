@@ -7,9 +7,9 @@ import allure
 class TestCourierLogin:
 
     @allure.title("Проверяем, что курьер может авторизоваться")
-    def test_create_courier(self,created_courier):
-        APICourier.create_courier(created_courier)
-        response, status_code = APICourier.login_courier(created_courier)
+    def test_create_courier(self,create_courier):
+        APICourier.create_courier(create_courier)
+        response, status_code = APICourier.login_courier(create_courier)
         
         assert status_code == 200, "Неуспешная авторизация курьера"
         assert response["id"], "При авторизации не был получен ID"

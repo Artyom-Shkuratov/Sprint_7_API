@@ -6,15 +6,15 @@ import allure
 @allure.feature("Принятие заказа")
 class TestAcceptOrder:
     
-    @allure.title('Принятие заказа')
-    def test_accept_order(self,created_courier):
+    @allure.title('Принять заказа')
+    def test_accept_order(self,create_courier):
         
-        APICourier.create_courier(created_courier)
+        APICourier.create_courier(create_courier)
         order_response, _ = APIOrder.create_order(Payloads().create_single_order_data())
         track_id = order_response["track"]
         order_info, _ = APIOrder.get_order_by_track(track_id)
         order_id = order_info["order"]["id"]
-        courier_response, _ = APICourier.login_courier(created_courier)
+        courier_response, _ = APICourier.login_courier(create_courier)
         courier_id = courier_response["id"]
         accept_response, status_code = APIOrder.put_order_to_courier(courier_id, order_id)
 
